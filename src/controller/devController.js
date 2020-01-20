@@ -9,7 +9,7 @@ module.exports = {
   },
   async store(req, res) {
     const { github_username, techs, longitude, latitude } = req.body;
-
+    console.log("args", github_username, techs, longitude, latitude);
     let dev = await Dev.findOne({ github_username });
 
     if (!dev) {
@@ -24,6 +24,8 @@ module.exports = {
         type: "Point",
         coordinates: [longitude, latitude]
       };
+
+      console.log("location", location);
 
       dev = await Dev.create({
         github_username,
